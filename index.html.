@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOY_JERE OPEN WORLD</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101820;color:white;font-family:Arial;text-align:center}
+header{padding:18px;background:#142d3b;color:#42e5c1}
+h1{margin:0}
+#city{height:65vh;min-height:350px;position:relative;overflow:hidden;
+background:linear-gradient(#71b6d3 0 45%,#668d55 45% 65%,#333 65%)}
+.building{position:absolute;bottom:35%;width:19%;background:#778b98;border:3px solid #344957}
+.b1{height:130px;left:3%}.b2{height:190px;left:25%;background:#8c7669}
+.b3{height:150px;right:25%}.b4{height:210px;right:3%;background:#a18a70}
+#road{position:absolute;bottom:0;height:35%;width:100%;background:#333}
+#road:after{content:"";position:absolute;top:50%;left:0;width:100%;border-top:4px dashed white}
+#car{position:absolute;bottom:12%;left:42%;width:85px;height:38px;background:#12d8b7;border:4px solid #087466;border-radius:12px}
+#car:before,#car:after{content:"";position:absolute;bottom:-9px;width:18px;height:12px;background:black;border-radius:4px}
+#car:before{left:7px}#car:after{right:7px}
+button{padding:13px;margin:5px;border:0;border-radius:10px;background:#42e5c1;font-weight:bold}
+.controls{display:grid;grid-template-columns:repeat(3,1fr);max-width:260px;margin:15px auto}
+.panel{background:#1b303d;margin:12px;padding:12px;border-radius:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>SOY_JERE 🚗</h1>
+<p>OPEN WORLD</p>
+</header>
+
+<div class="panel">
+<b>RANGO: OWNER</b>
+<p>Dinero: ∞ | Vehículos: desbloqueados</p>
+</div>
+
+<div id="city">
+<div class="building b1"></div>
+<div class="building b2"></div>
+<div class="building b3"></div>
+<div class="building b4"></div>
+<div id="road"></div>
+<div id="car"></div>
+</div>
+
+<div class="controls">
+<span></span><button onclick="move(0,-12)">⬆️</button><span></span>
+<button onclick="move(-12,0)">⬅️</button>
+<button onclick="move(0,12)">⬇️</button>
+<button onclick="move(12,0)">➡️</button>
+</div>
+
+<div class="panel">
+<h3>🏙️ CIUDAD</h3>
+<p>Explorá tu primera ciudad.</p>
+<button onclick="alert('¡Concesionario próximamente!')">🚘 Concesionario</button>
+<button onclick="alert('¡Garaje próximamente!')">🏠 Garaje</button>
+</div>
+
+<div class="panel">
+<h3>👑 ADMINISTRACIÓN</h3>
+<button onclick="alert('Admin de prueba agregado')">Agregar admin</button>
+<button onclick="alert('Admin de prueba retirado')">Retirar admin</button>
+<p>Panel de demostración local.</p>
+</div>
+
+<script>
+let x=42,y=0;
+function move(dx,dy){
+x=Math.max(0,Math.min(85,x+dx/3));
+y=Math.max(-20,Math.min(20,y+dy));
+let car=document.getElementById("car");
+car.style.left=x+"%";
+car.style.transform="translateY("+y+"px)";
+}
+document.addEventListener("keydown",e=>{
+if(e.key==="ArrowLeft"||e.key==="a")move(-12,0);
+if(e.key==="ArrowRight"||e.key==="d")move(12,0);
+if(e.key==="ArrowUp"||e.key==="w")move(0,-12);
+if(e.key==="ArrowDown"||e.key==="s")move(0,12);
+});
+</script>
+</body>
+</html>
